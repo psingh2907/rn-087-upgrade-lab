@@ -1,0 +1,15 @@
+React Native 0.87.1 · entry index.large · v24.19.0 · Apple M1 · 2026-10-01T03:16:40Z
+bundle android run1: 27.67s, peak 419MB
+bundle android run2: 36.47s, peak 338MB
+bundle android run3: 37.53s, peak 368MB
+bundle ios run1: 41.47s, peak 367MB
+bundle ios run2: 41.87s, peak 362MB
+bundle ios run3: 110.09s, peak 314MB
+dev bundle (cold): 87.070037s
+dev source map run1: 1.740120s
+dev source map run2: 0.741572s
+dev source map run3: 0.665746s
+dev source map run4: 0.474222s
+dev source map run5: 0.604517s
+dev source map size: 18.4MB
+dev server memory now: 314MB
