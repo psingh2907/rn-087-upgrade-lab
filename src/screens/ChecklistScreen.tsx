@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import {
-  InteractionManager,
   Pressable,
   ScrollView,
   StyleSheet,
   Text,
   TextInput,
   View,
+  type TextInputInstance,
+  type ViewInstance,
 } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { Header } from '../components/Header';
@@ -17,13 +18,14 @@ import { measureInWindow } from '../lib/measure';
 export function ChecklistScreen() {
   const [items, setItems] = useState<ChecklistItem[]>([]);
   const [photo, setPhoto] = useState<string | null>(null);
-  const notes = useRef<TextInput>(null);
-  const banner = useRef<View>(null);
+  const notes = useRef<TextInputInstance>(null);
+  const banner = useRef<ViewInstance>(null);
 
-  // Load the long list after the navigation transition finishes.
+  // Load the long list once the JS thread is idle (InteractionManager was
+  // removed in 0.87; requestIdleCallback is the replacement).
   useEffect(() => {
-    const task = InteractionManager.runAfterInteractions(() => setItems(checklist));
-    return () => task.cancel();
+    const handle = requestIdleCallback(() => setItems(checklist));
+    return () => cancelIdleCallback(handle);
   }, []);
 
   useEffect(() => {
@@ -62,7 +64,7 @@ export function ChecklistScreen() {
           );
         }}
         ListFooterComponent={
-          <ScrollView keyboardShouldPersistTaps={true} style={styles.footer}>
+          <ScrollView keyboardShouldPersistTaps="always" style={styles.footer}>
             <TextInput ref={notes} placeholder="Notes for the store manager" style={styles.input} multiline />
             <Pressable onPress={() => notes.current?.blur()} style={styles.pill}>
               <Text>Done</Text>

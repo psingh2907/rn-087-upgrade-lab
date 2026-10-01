@@ -5,7 +5,7 @@ type Props = { uri: string | null; onClose: () => void };
 // Full-screen photo evidence.
 export function PhotoModal({ uri, onClose }: Props) {
   return (
-    <Modal visible={uri !== null} animated animationType="fade" transparent onRequestClose={onClose}>
+    <Modal visible={uri !== null} animationType="fade" transparent onRequestClose={onClose}>
       <Pressable style={styles.backdrop} onPress={onClose}>
         {uri && <Image source={{ uri }} style={styles.photo} resizeMode="contain" />}
       </Pressable>

@@ -7,7 +7,7 @@ export type ChecklistItem =
 // long enough to make list performance matter.
 export const checklist: ChecklistItem[] = Array.from({ length: 40 }, (_, s) => [
   { id: `h${s}`, kind: 'header' as const, title: `Section ${s + 1}` },
-  ...Array.from({ length: 8 }, (_, q) => ({
+  ...Array.from({ length: 8 }, (_unused, q) => ({
     id: `q${s}-${q}`,
     kind: 'question' as const,
     title: `Is check ${q + 1} in section ${s + 1} complete?`,

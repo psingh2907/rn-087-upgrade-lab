@@ -4,15 +4,15 @@ export type ThemeSetting = 'light' | 'dark' | 'system';
 
 // "System" hands control back to the OS.
 export function applyThemeSetting(setting: ThemeSetting) {
-  Appearance.setColorScheme(setting === 'system' ? 'unspecified' : setting);
+  Appearance.setColorScheme(setting === 'system' ? 'auto' : setting);
 }
 
 export function useIsDark() {
-  const scheme: ColorSchemeName = useColorScheme();
-  return scheme === 'dark';
+  return useColorScheme() === 'dark';
 }
 
-export function describeScheme(scheme: ColorSchemeName) {
-  if (scheme === 'unspecified') return 'Following the system';
+// useColorScheme() returns null (not 'unspecified') when there's no preference.
+export function describeScheme(scheme: ColorSchemeName | null) {
+  if (scheme === null) return 'Following the system';
   return scheme === 'dark' ? 'Dark' : 'Light';
 }
