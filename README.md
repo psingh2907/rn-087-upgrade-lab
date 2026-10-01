@@ -41,8 +41,15 @@ and `package-lock.json` from the baseline commit and reinstall. Runs that
 overlapped with other heavy work on the machine are kept in
 `metrics/discarded/` for transparency.
 
+## Android build
+
+`cd android && ./gradlew :app:assembleDebug` builds on 0.87.1 (AGP 9,
+Gradle 9.4.1, SDK 37, which Gradle downloads by itself). The last commit
+also drops the template's two AGP 9 opt-outs, which means removing the
+separate Kotlin plugin from `android/app/build.gradle`. Build logs for each
+step are in `metrics/android/`.
+
 ## Scope
 
-JavaScript, TypeScript and Metro only. The native iOS and Android builds
-weren't run, so the Android Gradle Plugin 9 and Swift Package Manager
-changes aren't measured here.
+The app wasn't run on a device or emulator, and the iOS app wasn't built
+(0.87 has no iOS template changes). Swift Package Manager wasn't tried.

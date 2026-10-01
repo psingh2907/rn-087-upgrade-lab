@@ -1,0 +1,6 @@
+android-noopt.log:* What went wrong:
+android-noopt.log:> Failed to apply plugin 'org.jetbrains.kotlin.android'.
+android-noopt.log:   > Cannot add extension with name 'kotlin', as there is an extension already registered with that name.
+android-noopt.log:BUILD FAILED in 1s
+android-087.log:BUILD SUCCESSFUL in 8m 57s
+android-noopt2.log:BUILD SUCCESSFUL in 25s
